@@ -1,8 +1,19 @@
+@import "reset";
+@import "fonts";
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
 #mario {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
   .wrapper {
     min-height: 100vh;
-    font-family: "Roboto Slab", serif;
+    font-family: "Press Start", serif;
     font-weight: 300;
     color: #fff;
     position: relative;
@@ -12,19 +23,19 @@
     height: 100vh;
     font-size: 40px;
     font-weight: 100;
-
+    scroll-snap-align: start;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    @for $i from 2 through 7 {
-	  $sectionid : $i - 1;
+    text-align: center;
+    @for $i from 2 through 11 {
+      $sectionid: $i - 1;
       &:nth-child(#{$i}) {
-		background-image: linear-gradient( #22a8f056,  #22a8f056),
-						  url('../../public/img/background'+$sectionid+'.jpg');
-		background-size: cover;
-		background-position: center;
-	  }
+        background-image: linear-gradient(#22a8f056, #22a8f056),
+          url("../../public/img/background" + $sectionid + ".jpg");
+        background-size: cover;
+        background-position: center;
+      }
     }
   }
 
@@ -35,19 +46,27 @@
       padding: 30px;
       display: flex;
       flex-flow: column nowrap;
+      overflow-y: scroll;
     }
 
     & {
       margin: 0 0 100px 30px;
     }
+    
+    &__img {
+      z-index: -2;
+      height: 25px;
+      position: absolute;
+      margin-left: -30px;
+    }
     &__date {
-      font-size: 24px;
+      font-size: 20px;
       transition: all 0.15s ease-out;
     }
     &__title {
-      font-size: 32px;
+      font-size: 25px;
       font-weight: 300;
-      margin: 0 0 0.25em;
+      margin: 0.5em 0 0.5em;
       width: 300px;
       height: 0;
       overflow: hidden;
@@ -56,47 +75,68 @@
     }
     &__descr {
       font-weight: 100;
-      font-size: 18px;
-      font-size: 18px;
+      font-size: 13px;
       width: 300px;
       height: 0;
       overflow: hidden;
       opacity: 0;
       transition: height 0.3s ease-out, opacity 0.2s ease-out;
     }
-	&:after {
-		content: "";
-		display: block;
-		border-left: 2px solid white;
-		height: 100%;
-		margin-left: -30px;
+    &:before {
+      content: "";
+      background-image: url('../../public/img/tuyau-plein.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-left: -40.29px;
+      display: block;
+      height:64px;
+      margin-bottom: -1.8em;
+    }
+    &:after {
+      content: "";
+      background-image: url('../../public/img/tuyau.png');
+      background-size: contain;
+      width: 50px;
+      margin-left: -40px;
+      height: 120%;
+      position: absolute;
+      top:50px;
     }
     li {
       position: relative;
       transition: all 0.3s ease-out;
-      margin-bottom: 1em;
+      margin-bottom: 1.7em;
+      padding-left: 3em;
 
-      &:after {
+      &:nth-child(1) > *{
+        padding-top: 1.5em;
+      }
+      &:before {
         content: "";
-        display: block;
-        border-left: 2px solid white;
-        border-top: 2px solid white;
-        height: 250px;
-        width: 20px;
+        background-image: url('../../public/img/tuyau-plein.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: rotate(90deg);
+        height: 50px;
+        width: 50px;
         position: absolute;
-        left: -30px;
+        left: -3px;
+        top: -10px;
+        z-index: -1;
+      }
+      &:nth-child(1):before {
         top: 15px;
       }
-
       a {
         display: block;
         padding: 0;
         color: #fff;
         transition: all 0.15s ease-out;
+        text-decoration: none;
 
         &:hover {
           background-color: transparent;
-          padding-left: 1em;
+          padding-left: 1.5em;
         }
         &:focus {
           background-color: transparent;
@@ -105,16 +145,13 @@
 
       &.active {
         pointer-events: none;
-        padding-left: 1em;
-
-        &:after {
-          width: 35px;
-          height: 400px;
-          top: 35px;
+        padding-left: 3.5em;
+        .nav__img {
+          opacity: 0;
+          width:0;
         }
-
         .nav__date {
-          font-size: 48px;
+          font-size: 30px;
         }
         .nav__title {
           height: auto;
