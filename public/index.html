@@ -4,178 +4,148 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mario Timeline</title>
-    <link rel="stylesheet" href="../src/scss/app.scss"/>
+    <link rel="stylesheet" href="../src/scss/app.scss" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
   </head>
-  <body data-spy="scroll" id="mario2" data-target="#timeline">
+  <body>
     <div class="wrapper">
+      <div id="mute">
+        <i class="fas fa-volume-mute"></i>
+        <p>Activer l'audio</p>
+      </div>
       <nav class="nav__wrapper" id="timeline">
         <ul class="nav">
-          <li role="jeu" class="active">
+          <li role="jeu">
             <a href="#section1">
-              <img class="nav__img" src="./img/mario1.png" alt="mario1">
+              <img class="nav__img" src="./img/mario1.png" alt="mario1" />
               <span class="nav__date">1985</span>
-              <h3 class="nav__title">Super Mario Bros.</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario Bros.</h3></div>
+              <div class="nav__descr"><p>Nintendo NES</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section2">
-              <img class="nav__img" src="./img/mario2.png" alt="mario1">
+              <img class="nav__img" src="./img/mario2.png" alt="mario1" />
               <span class="nav__date">1989</span>
-              <h3 class="nav__title">Super Mario Bros. 2</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario Bros. 2</h3></div>
+              <div class="nav__descr"><p>Nintendo NES</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section3">
-              <img class="nav__img" src="./img/mario3.png" alt="mario1">
+              <img class="nav__img" src="./img/mario3.png" alt="mario1" />
               <span class="nav__date">1991</span>
-              <h3 class="nav__title">Super Mario Bros. 3</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario Bros. 3</h3></div>
+              <div class="nav__descr"><p>Nintendo NES</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section4">
-              <img class="nav__img" src="./img/mario4.png" alt="mario1">
+              <img class="nav__img" src="./img/mario4.png" alt="mario1" />
               <span class="nav__date">1992</span>
-              <h3 class="nav__title">Super Mario World</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario World</h3></div>
+              <div class="nav__descr"><p>Super Nintendo</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section5">
-              <img class="nav__img" src="./img/mario5.png" alt="mario1">
+              <img class="nav__img" src="./img/mario5.png" alt="mario1" />
               <span class="nav__date">1997</span>
-              <h3 class="nav__title">Super Mario 64</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario 64</h3></div>
+              <div class="nav__descr"><p>Nintendo 64</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section6">
-              <img class="nav__img" src="./img/mario6.png" alt="mario1">
+              <img class="nav__img" src="./img/mario6.png" alt="mario1" />
               <span class="nav__date">2002</span>
-              <h3 class="nav__title">Super Mario Sunshine</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario Sunshine</h3></div>
+              <div class="nav__descr"><p>Gamecube</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section7">
-              <img class="nav__img" src="./img/mario7.png" alt="mario1">
+              <img class="nav__img" src="./img/mario7.png" alt="mario1" />
               <span class="nav__date">2007</span>
-              <h3 class="nav__title">Super Mario Galaxy</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario Galaxy</h3></div>
+              <div class="nav__descr"><p>Wii</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section8">
-              <img class="nav__img" src="./img/mario8.png" alt="mario1">
+              <img class="nav__img" src="./img/mario8.png" alt="mario1" />
               <span class="nav__date">2013</span>
-              <h3 class="nav__title">Super Mario 3D World</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario 3D World</h3></div>
+              <div class="nav__descr"><p>Wii U</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section9">
-              <img class="nav__img" src="./img/mario9.png" alt="mario1">
+              <img class="nav__img" src="./img/mario9.png" alt="mario1" />
               <span class="nav__date">2017</span>
-              <h3 class="nav__title">Super Mario Odyssey</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>Super Mario Odyssey</h3></div>
+              <div class="nav__descr"><p>Nintendo Switch</p></div>
             </a>
           </li>
 
           <li role="jeu">
             <a href="#section10">
-              <img class="nav__img" src="./img/mario10.png" alt="mario1">
+              <img class="nav__img" src="./img/mario10.png" alt="mario1" />
               <span class="nav__date">2020</span>
-              <h3 class="nav__title">35 ans de Mario</h3>
-              <p class="nav__descr">
-                Sed sit amet justo sed odio tempus tempus. Vestibulum sed varius
-                mi, sit amet condimentum lacus.
-              </p>
+              <div class="nav__title"><h3>35 ans de Mario</h3></div>
+              <div class="nav__descr"><p>35 ans de jeux</p></div>
             </a>
           </li>
         </ul>
       </nav>
 
-      <section class="section section1" id="section1">
-        Super Mario Bros.
-      </section>
+      <section class="section section1" id="section1"></section>
 
-      <section class="section section2" id="section2">
-        Super Mario Bros. 2
-      </section>
+      <section class="section section2" id="section2"></section>
 
-      <section class="section section3" id="section3">
-        Super Mario Bros. 3
-      </section>
+      <section class="section section3" id="section3"></section>
 
-      <section class="section section4" id="section4">
-        Super Mario World
-      </section>
+      <section class="section section4" id="section4"></section>
 
-      <section class="section section5" id="section5">Super Mario 64</section>
+      <section class="section section5" id="section5"></section>
 
-      <section class="section section6" id="section6">
-        Super Mario Sunshine
-      </section>
+      <section class="section section6" id="section6"></section>
 
-      <section class="section section7" id="section7">
-        Super Mario Galaxy
-      </section>
+      <section class="section section7" id="section7"></section>
 
-      <section class="section section8" id="section8">
-        Super Mario 3D World
-      </section>
+      <section class="section section8" id="section8"></section>
 
-      <section class="section section9" id="section9">
-        Super Mario Odyssey
-      </section>
+      <section class="section section9" id="section9"></section>
 
-      <section class="section section10" id="section10">
-        35 ans de Mario
-      </section>
+      <section class="section section10" id="section10"></section>
     </div>
-
- 
+    <audio id="tuyau" src="sound/tuyau.wav" muted></audio>
+    <audio id="piece" src="sound/piece.wav" muted></audio>
+    <audio id="marioOST1" src="sound/mario1.mp3" muted></audio>
+    <audio id="marioOST2" src="sound/mario2.mp3" muted></audio>
+    <audio id="marioOST3" src="sound/mario3.mp3" muted></audio>
+    <audio id="marioOST4" src="sound/mario4.mp3" muted></audio>
+    <audio id="marioOST5" src="sound/mario5.mp3" muted></audio>
+    <audio id="marioOST6" src="sound/mario6.mp3" muted></audio>
+    <audio id="marioOST7" src="sound/mario7.mp3" muted></audio>
+    <audio id="marioOST8" src="sound/mario8.mp3" muted></audio>
     <script src="../src/main.js"></script>
   </body>
 </html>
