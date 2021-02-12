@@ -1,11 +1,12 @@
 @import "reset";
 @import "fonts";
 
-//supprime la scroll
+//supprime la scrollbar sur Chrome
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
+
 
 #mario {
   scroll-behavior: smooth;
@@ -19,12 +20,13 @@
     #mute {
       text-align: center;
       position: fixed;
-      right: 20px;
-      top: 20px;
+      right: 25px;
+      top: 25px;
       font-size: 50px;
       pointer-events: all;
       cursor: pointer;
       width: 200px;
+      z-index: 2;
       p {
         font-size: 10px;
       }
@@ -32,20 +34,130 @@
   }
   section {
     height: 100vh;
-    font-size: 40px;
+    position: relative;
+    max-width: 100vw;
+    overflow-x: hidden;
+    font-size: 12px;
     font-weight: 100;
     scroll-snap-align: start;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     @for $i from 1 through 10 {
       &:nth-of-type(#{$i}) {
-        background-image: linear-gradient(90deg, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 60%),
+        background-image: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.3) 30%,
+            rgba(0, 0, 0, 0) 60%
+          ),
           url("../../public/img/background" + $i + ".jpg");
         background-size: cover;
         background-position: center;
       }
+    }
+    &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4) {
+      background-position: bottom;
+    }
+    &:nth-of-type(5), &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(8), &:nth-of-type(9) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #help {
+      opacity: 0;
+      transition-duration: 2s;
+      transition-property: opacity;
+      background-color: rgba(0, 0, 0, 0.267);
+      margin: 20px auto;
+      width: auto;
+      background-color: rgba(0, 0, 0, 0.267);
+      padding: 35px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      p {
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: .15em;
+      }
+    }
+    #help.help-chrome {
+      opacity: 1;
+      transition-duration: 2s;
+      transition-property: opacity;
+      p {
+        animation: typing 4s steps(40, end);
+      }
+    }
+
+    img {
+      z-index: 0;
+    }
+    .sprite__nuage {
+      position: absolute;
+      animation-duration: 100s;
+      animation-name: nuage;
+      animation-iteration-count: infinite;
+      width: 150px;
+      animation-timing-function: linear;
+    }
+    .sprite__nuage1 {
+      top: 15%;
+    }
+    .sprite__nuage2 {
+      top: 50%;
+      animation-duration: 200s;
+      animation-name: nuage;
+      animation-iteration-count: infinite;
+    }
+    .sprite__mario {
+      position: absolute;
+      animation-duration: 15s;
+      animation-name: mario;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    .sprite__mario1 {
+      bottom: 15%;
+      width: 150px;
+    }
+    .sprite__mario2 {
+      bottom: 12%;
+      width: 150px;
+      animation-duration: 15s;
+      animation-name: mario2;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    .sprite__snake {
+      position: absolute;
+      bottom: 12%;
+      right:35px;
+      width: 150px;
+    }
+    .sprite__mario3 {
+      top: 20%;
+      width: 200px;
+      animation: mario 15s infinite linear, marioFly 1s infinite linear;
+    }
+    .sprite__mario4 {
+      bottom: 17%;
+      width: 200px;
+    }
+    .hover3D {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      width: 80vw;
+      margin: 0 auto;
+      transition: transform 0.1s;
+    }
+    .img_3D {
+      width: 50%;
+    }
+    .mario_3D_9 {
+      width: 45%;
     }
   }
 
@@ -56,6 +168,8 @@
       padding: 30px;
       display: flex;
       flex-flow: column nowrap;
+      z-index: 1;
+      pointer-events: none;
     }
 
     & {
@@ -71,6 +185,9 @@
     &__date {
       font-size: 20px;
       transition: all 0.15s ease-out;
+      text-decoration: none;
+      color: #fff;
+      pointer-events: all;
     }
     &__title {
       font-size: 25px;
@@ -142,13 +259,11 @@
       &:nth-child(1):before {
         top: 15px;
       }
-      a {
+      article {
         display: block;
         padding: 0;
         color: #fff;
         transition: all 0.15s ease-out;
-        text-decoration: none;
-
         &:hover {
           background-color: transparent;
           padding-left: 1.5em;
@@ -175,14 +290,14 @@
         .nav__title h3 {
           transform: translateX(0);
           transition-property: transform;
-          transition-duration: 1s;          
+          transition-duration: 1s;
           transition-delay: 1s;
         }
         .nav__descr p {
           height: 100px;
           transform: translateX(0);
           transition-property: transform;
-          transition-duration: 1s;          
+          transition-duration: 1s;
           transition-delay: 2.7s;
         }
       }
@@ -192,41 +307,90 @@
 
 @keyframes tuyauslide {
   from {
-    margin-top: 0px;
+    transform: translateY(0) rotate(90deg);
   }
   25% {
-    margin-top: 45px;
-    height:50px;
+    transform: translateY(45px) rotate(90deg);
+    height: 50px;
   }
   30% {
-    margin-top: 30px;
-    height:65px;
+    transform: translateY(30px) rotate(90deg);
+    height: 65px;
   }
-  64%{
-    margin-top: 30px;
-    height:65px;
+  64% {
+    transform: translateY(30px) rotate(90deg);
+    height: 65px;
   }
   65% {
-    margin-top: 45px;
-    height:50px;
+    transform: translateY(45px) rotate(90deg);
+    height: 50px;
   }
   75% {
-    margin-top: 75px;
-    height:50px;
+    transform: translateY(75px) rotate(90deg);
+    height: 50px;
   }
   80% {
-    margin-top: 60px;
-    height:65px;
+    transform: translateY(60px) rotate(90deg);
+    height: 65px;
   }
   85% {
-    margin-top: 60px;
-    height:65px;
+    transform: translateY(60px) rotate(90deg);
+    height: 65px;
   }
-  95%{
-    margin-top: 75px;
-    height:50px;
+  95% {
+    transform: translateY(75px) rotate(90deg);
+    height: 50px;
   }
   to {
-    margin-top: 0px;
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes mario {
+  from {
+    transform: translateX(-10vw);
+  }
+  to {
+    transform: translateX(110vw);
+  }
+}
+@keyframes nuage {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-10vw);
+  }
+  
+}
+@keyframes marioFly {
+  from {
+    top: 20%;
+  }
+  50%{
+    top: 23%;
+  }
+  to {
+    top: 20%;
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes mario2 {
+  from {
+    transform: translateX(-10vw);
+  }
+  49% {
+    transform: translateX(80vw);
+  }
+  51%{
+    transform: translateX(80vw) scale(-1, 1);
+  }
+  to {
+    transform: translateX(-10vw) scale(-1, 1);
   }
 }

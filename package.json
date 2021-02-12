@@ -30,6 +30,7 @@
     "sass": "^1.26.3"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "caniuse-lite": "^1.0.30001185"
   }
 }
