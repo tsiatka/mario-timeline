@@ -290,6 +290,11 @@
       }
 
       &.active {
+        article {
+          &:hover {
+            padding-left: 0;
+          }
+        }
         pointer-events: none;
         padding-left: 3.5em;
         &:before {
@@ -316,6 +321,69 @@
           transition-duration: 1s;
           transition-delay: 2.7s;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #mario .section .img_3D {
+    width: 90%;
+  }
+  #mario .section__mario1 {
+    bottom: 13%;
+  }
+  #mario .section__mario2 {
+    bottom: 11%;
+  }
+  #mario .section__snake {
+    bottom: 11%;
+    right: 15px;
+  }
+  #mario .section__mario4 {
+    bottom: 15%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #mario .nav li.active .nav__date {
+    font-size: 25px;
+  }
+  #mario .nav__title {
+    font-size: 15px;
+  }
+  #mario .section__mario2 {
+    animation-duration: 7s;
+    animation-name: mario2Mobile;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  #mario #muteBtn {
+    right: 15px;
+    top: 15px;
+    font-size: 25px;
+    width: 75px;
+    p {
+      font-size: 5px;
+    }
+  }
+  #mario .nav__wrapper {
+    padding: 0;
+    padding-right: 15px;
+  }
+  #mario .nav:before {
+    margin-left: -41.1px;
+  }
+
+  #mario .section {
+    @for $i from 1 through 10 {
+      &:nth-of-type(#{$i}) {
+        background-image: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.5) 30%,
+            rgba(0, 0, 0, 0.1) 80%
+          ),
+          url("../../public/img/background" + $i + ".jpg");
       }
     }
   }
@@ -408,6 +476,20 @@
   }
   51% {
     transform: translateX(80vw) scale(-1, 1);
+  }
+  to {
+    transform: translateX(-10vw) scale(-1, 1);
+  }
+}
+@keyframes mario2Mobile {
+  from {
+    transform: translateX(-10vw);
+  }
+  49% {
+    transform: translateX(30vw);
+  }
+  51% {
+    transform: translateX(30vw) scale(-1, 1);
   }
   to {
     transform: translateX(-10vw) scale(-1, 1);
