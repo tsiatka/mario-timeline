@@ -327,6 +327,12 @@
 }
 
 @media screen and (max-width: 1024px) {
+  #mario #help, #mario  #help.help-chrome {
+    display: none;
+  }
+  #mario #help {
+    display: none;
+  }
   #mario .section .img_3D {
     width: 90%;
   }
@@ -371,10 +377,6 @@
     padding: 0;
     padding-right: 15px;
   }
-  #mario .nav:before {
-    margin-left: -41.1px;
-  }
-
   #mario .section {
     @for $i from 1 through 10 {
       &:nth-of-type(#{$i}) {
