@@ -14,13 +14,23 @@ const sectionMargin = 200;
 let currentActive = 0;
 let timeouts = [];
 
+//hauteur timeline
+const timeline = document.getElementById("timeline");
+let style = document.createElement("style");
+document.head.appendChild(style);
+let sheet = style.sheet
+let navHeight = timeline.getElementsByClassName("nav")[0].offsetHeight + timeline.scrollHeight - window.innerHeight;
+sheet.addRule('.nav::after','height: '+navHeight+'px');
+sheet.insertRule('.nav::after { height: '+navHeight+'px}', 0);
+
+
 function mute(e) {
   e.muted = true;
   e.pause();
-  stopTuyauSounds();
+  stopPipeSounds();
 }
 
-function stopTuyauSounds() {
+function stopPipeSounds() {
   for (let i = 0; i < timeouts.length; i++) {
     clearTimeout(timeouts[i]);
   }
@@ -31,31 +41,31 @@ function unmute(e) {
   e.muted = false;
 }
 
-function playMusique() {
+function playMusic() {
   let currentSection = document.getElementsByClassName("current");
   let currentNb = currentSection[0].id.substring(7);
-  let musique = document.getElementById("marioOST" + currentNb);
-  musique.muted = false;
-  musique.volume = 0.1;
-  musique.currentTime = 0;
-  musique.play();
+  let music = document.getElementById("marioOST" + currentNb);
+  music.muted = false;
+  music.volume = 0.1;
+  music.currentTime = 0;
+  music.play();
 }
 
-function playTuyau() {
+function playPipe() {
   timeouts.push(
     setTimeout(function () {
-      let bruitageTuyau = document.getElementById("tuyau");
-      bruitageTuyau.muted = false;
-      bruitageTuyau.volume = 0.1;
-      bruitageTuyau.play();
+      let pipeSound = document.getElementById("pipe");
+      pipeSound.muted = false;
+      pipeSound.volume = 0.1;
+      pipeSound.play();
     }, 1000)
   );
   timeouts.push(
     setTimeout(function () {
-      let bruitagePiece = document.getElementById("piece");
-      bruitagePiece.muted = false;
-      bruitagePiece.volume = 0.1;
-      bruitagePiece.play();
+      let coinSound = document.getElementById("coin");
+      coinSound.muted = false;
+      coinSound.volume = 0.1;
+      coinSound.play();
     }, 3000)
   );
 }
@@ -88,8 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
   makeActive(current);
 });
 
-//bouton audio
-const muteBtn = document.getElementById("mute");
+//audio button
+const muteBtn = document.getElementById("muteBtn");
 muteBtn.addEventListener("click", function () {
   muteBtn.children[0].classList.toggle("fa-volume-up");
   muteBtn.children[0].classList.toggle("fa-volume-mute");
@@ -99,21 +109,20 @@ muteBtn.addEventListener("click", function () {
   } else {
     muteBtn.children[1].innerText = "Désactiver l'audio";
     document.querySelectorAll("audio").forEach((e) => unmute(e));
-    playMusique();
+    playMusic();
   }
 });
 
 //scrollspy
 window.addEventListener("scroll", () => {
-  //transforme translate la timeline au scroll
-  const timeline = document.getElementById("timeline");
+  //transform translate timeline on scroll
   timeline.style.transform =
     "translateY(-" +
     ((timeline.scrollHeight - window.innerHeight) * window.pageYOffset) /
       document.body.clientHeight +
     "px)";
 
-  //trouve section courante
+  //find current section
   const current =
     sections.length -
     [...sections]
@@ -123,50 +132,49 @@ window.addEventListener("scroll", () => {
       ) -
     1;
 
-  //si changement de section
+  //if section change
   if (current !== currentActive) {
-    //stop bruitages et musique
+    //stop sounds and music
     document.querySelectorAll("audio").forEach((e) => mute(e));
-    stopTuyauSounds();
+    stopPipeSounds();
 
-    // change classe active
+    //change active classe
     removeAllActive();
     currentActive = current;
     makeActive(current);
 
-    //joue musique
+    //play music
     if (muteBtn.children[0].classList.contains("fa-volume-up")) {
-      playMusique();
+      playMusic();
     }
 
-    //joue bruitage tuyau
+    //play Pipe sounds
     if (muteBtn.children[0].classList.contains("fa-volume-up")) {
-      playTuyau();
+      playPipe();
     }
   }
 
+  //3D Effect
   let currentSection = document.getElementsByClassName("current");
   let hover3D = currentSection[0].getElementsByClassName("hover3D")[0];
-  const height = hover3D.clientHeight;
-  const width = hover3D.clientWidth;
-  hover3D.addEventListener("mousemove", handleMove);
+  if (hover3D) {
+    const height = hover3D.clientHeight;
+    const width = hover3D.clientWidth;
+    hover3D.addEventListener("mousemove", handleMove);
 
-  function handleMove(hover3D) {
-    console.log(hover3D);
-    const xVal = hover3D.layerX;
-    const yVal = hover3D.layerY;
+    function handleMove(hover3D) {
+      const yRotation = 10 * ((hover3D.layerX - width / 2) / width);
 
-    const yRotation = 10 * ((xVal - width / 2) / width);
+      const xRotation = -10 * ((hover3D.layerY - height / 2) / height);
 
-    const xRotation = -10 * ((yVal - height / 2) / height);
+      const string =
+        "perspective(600px) rotateX(" +
+        xRotation +
+        "deg) rotateY(" +
+        yRotation +
+        "deg)";
 
-    const string =
-      "perspective(600px) scale(1) rotateX(" +
-      xRotation +
-      "deg) rotateY(" +
-      yRotation +
-      "deg)";
-
-    hover3D.target.style.transform = string;
+      hover3D.target.style.transform = string;
+    }
   }
 });
