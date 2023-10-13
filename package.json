@@ -2,7 +2,6 @@
   "name": "vanilla-parcel-boilerplate",
   "version": "1.0.0",
   "description": "Simple workflow starter for building vanilla JS apps",
-  "main": "index.js",
   "scripts": {
     "dev": "npm run clean && parcel public/index.html --dist-dir development -p 3000",
     "build": "parcel build public/*.html --dist-dir dist --public-url ./",
